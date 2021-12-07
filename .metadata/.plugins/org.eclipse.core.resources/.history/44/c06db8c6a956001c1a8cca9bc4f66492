@@ -1,0 +1,8 @@
+package hongreu.demo.service;
+
+import hongreu.demo.dto.PlaceListRequestDto;
+import hongreu.demo.dto.PlaceListResponseDto;
+
+public interface IPlaceListService {
+	PlaceListResponseDto save(PlaceListRequestDto placeListRequestDto);
+}

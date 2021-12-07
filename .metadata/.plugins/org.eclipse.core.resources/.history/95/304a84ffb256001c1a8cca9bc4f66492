@@ -1,0 +1,12 @@
+package hongreu.demo.dto;
+
+public class PlaceListResponseDto extends ResponseBaseDto {
+	private PlacesData placesData;
+	
+	public PlacesData getPlacesData() {
+		return placesData;
+	}
+	public void setPlacesData(PlacesData placesData) {
+		this.placesData = placesData;
+	}
+}

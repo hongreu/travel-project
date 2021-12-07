@@ -1,0 +1,5 @@
+package hongreu.demo.dto;
+
+public class RequestBaseDto extends BaseDto<LoginRequestDto> {
+	
+}

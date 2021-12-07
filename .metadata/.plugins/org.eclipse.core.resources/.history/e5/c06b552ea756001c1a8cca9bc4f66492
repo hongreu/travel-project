@@ -1,0 +1,8 @@
+package hongreu.demo.service.impl;
+
+import hongreu.demo.dto.LoginRequestDto;
+import hongreu.demo.dto.LoginResponseDto;
+
+public interface ILoginService {
+	LoginResponseDto save(LoginRequestDto loginRequestDto);
+}

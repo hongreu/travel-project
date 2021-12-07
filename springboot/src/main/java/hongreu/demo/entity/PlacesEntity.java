@@ -1,0 +1,27 @@
+package hongreu.demo.entity;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "places")
+public class PlacesEntity extends BaseEntity {
+	@Column(name = "name")
+	private String name;
+	@Column(name = "visited")
+	private String visited;
+	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getVisited() {
+		return visited;
+	}
+	public void setVisited(String visited) {
+		this.visited = visited;
+	}
+}

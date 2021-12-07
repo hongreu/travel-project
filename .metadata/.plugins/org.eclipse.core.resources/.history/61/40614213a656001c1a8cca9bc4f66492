@@ -1,0 +1,9 @@
+package hongreu.demo.service;
+
+import hongreu.demo.dto.NewsDto;
+
+public interface ILoginService {
+	NewsDto save(NewsDto newsDto);
+	void delete(long ids[]);
+	NewsDto get(long id);
+}

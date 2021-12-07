@@ -1,0 +1,4 @@
+package hongreu.demo.dto;
+
+public class PlaceListResponseDto extends ResponseBaseDto {
+}

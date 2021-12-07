@@ -1,0 +1,21 @@
+package hongreu.demo.service.impl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import hongreu.demo.dto.PlaceListRequestDto;
+import hongreu.demo.dto.PlaceListResponseDto;
+import hongreu.demo.repository.IPlacesRepository;
+import hongreu.demo.service.IPlaceListService;
+
+@Service
+public class PlaceListService implements IPlaceListService {
+	@Autowired
+	private IPlacesRepository placesRepository;
+
+	@Override
+	public PlaceListResponseDto findAllPlaces(PlaceListRequestDto placeListRequestDto) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+}

@@ -1,0 +1,9 @@
+package hongreu.demo.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import hongreu.demo.entity.PlacesEntity;
+
+public interface ICategoryRepository extends JpaRepository<PlacesEntity, Long> {
+	PlacesEntity findOneByCode(String code);
+}

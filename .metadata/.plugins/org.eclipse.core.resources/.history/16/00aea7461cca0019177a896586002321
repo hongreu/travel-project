@@ -1,0 +1,10 @@
+package hongreu.demo.service.impl;
+
+import org.springframework.beans.factory.annotation.Autowire;
+
+import hongreu.demo.service.INewsService;
+
+public class NewsService implements INewsService {
+	@Autowire
+	private INewsRepository newsRepository;
+}

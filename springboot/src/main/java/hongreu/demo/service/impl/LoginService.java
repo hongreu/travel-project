@@ -1,0 +1,32 @@
+package hongreu.demo.service.impl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import hongreu.demo.common.Hashing;
+import hongreu.demo.dto.LoginRequestDto;
+import hongreu.demo.dto.LoginResponseDto;
+import hongreu.demo.entity.UserListEntity;
+import hongreu.demo.repository.IUserListRepository;
+import hongreu.demo.service.ILoginService;
+
+@Service
+public class LoginService implements ILoginService {
+	@Autowired
+	private IUserListRepository userListRepository;
+
+	@Override
+	public LoginResponseDto checkUser(LoginRequestDto loginRequestDto) {
+		LoginResponseDto loginResponseDto = new LoginResponseDto();
+		UserListEntity userListEntity = userListRepository.findOneByUsername(loginRequestDto.getUsername());
+		if (userListEntity != null && Hashing.getMD5(loginRequestDto.getPassword()).equals(userListEntity.getPassword())) {
+			loginResponseDto.setResponseCode("00");
+			loginResponseDto.setDescription("Login successfully");
+			loginResponseDto.setToken(userListEntity.getToken());
+		} else {
+			loginResponseDto.setResponseCode("05");
+			loginResponseDto.setDescription("Login failed");
+		}
+		return loginResponseDto;
+	}
+}

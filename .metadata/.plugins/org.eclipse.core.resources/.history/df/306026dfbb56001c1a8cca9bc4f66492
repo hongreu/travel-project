@@ -1,0 +1,41 @@
+package hongreu.demo.converter;
+
+import org.springframework.stereotype.Component;
+
+import hongreu.demo.dto.NewsDto;
+import hongreu.demo.entity.NewsEntity;
+
+@Component
+public class PlacesConverter {
+	public NewsEntity toEntity(NewsDto newsDto) {
+		NewsEntity newsEntity = new NewsEntity();
+		newsEntity.setTitle(newsDto.getTitle());
+		newsEntity.setContent(newsDto.getContent());
+		newsEntity.setShortDescription(newsDto.getShortDescription());
+		newsEntity.setThumbnail(newsDto.getThumbnail());
+		return newsEntity;
+	}
+	
+	public NewsDto toDto(NewsEntity newsEntity) {
+		NewsDto newsDto = new NewsDto();
+		newsDto.setId(newsEntity.getId());
+		newsDto.setCreatedBy(newsEntity.getCreatedBy());
+		newsDto.setCreatedDate(newsEntity.getCreatedDate());
+		newsDto.setModifiedBy(newsEntity.getModifiedBy());
+		newsDto.setModifiedDate(newsEntity.getModifiedDate());
+		newsDto.setTitle(newsEntity.getTitle());
+		newsDto.setContent(newsEntity.getContent());
+		newsDto.setShortDescription(newsEntity.getShortDescription());
+		newsDto.setCategoryCode(newsEntity.getCategory().getCode());
+		newsDto.setThumbnail(newsEntity.getThumbnail());
+		return newsDto;
+	}
+	
+	public NewsEntity toEntity(NewsDto newsDto, NewsEntity newsEntity) {
+		newsEntity.setTitle(newsDto.getTitle());
+		newsEntity.setContent(newsDto.getContent());
+		newsEntity.setShortDescription(newsDto.getShortDescription());
+		newsEntity.setThumbnail(newsDto.getThumbnail());
+		return newsEntity;
+	}
+}

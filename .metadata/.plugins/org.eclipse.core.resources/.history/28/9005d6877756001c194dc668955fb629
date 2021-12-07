@@ -1,0 +1,5 @@
+package hongreu.demo.dto;
+
+public interface BaseDto {
+	
+}

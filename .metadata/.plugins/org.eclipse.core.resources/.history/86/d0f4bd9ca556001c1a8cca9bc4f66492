@@ -1,0 +1,47 @@
+package hongreu.demo.service.impl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import hongreu.demo.converter.NewsConverter;
+import hongreu.demo.dto.NewsDto;
+import hongreu.demo.entity.PlacesEntity;
+import hongreu.demo.entity.NewsEntity;
+import hongreu.demo.repository.IPlacesRepository;
+import hongreu.demo.repository.IUserListRepository;
+import hongreu.demo.service.INewsService;
+
+@Service
+public class NewsService implements INewsService {
+	@Autowired
+	private IUserListRepository newsRepository;
+	@Autowired
+	private IPlacesRepository categoryRepository;
+	@Autowired
+	private NewsConverter newsConverter;
+
+	@Override
+	public NewsDto save(NewsDto newsDto) {
+		PlacesEntity categoryEntity = categoryRepository.findOneByCode(newsDto.getCategoryCode());
+		NewsEntity newsEntity = newsConverter.toEntity(newsDto);
+		if (newsDto.getId() > 0) {
+			newsEntity.setId(newsDto.getId());
+		}
+		newsEntity.setCategory(categoryEntity);
+		newsEntity = newsRepository.save(newsEntity);
+		return newsConverter.toDto(newsEntity);
+	}
+
+	@Override
+	public void delete(long[] ids) {
+		for(long item : ids) {
+			newsRepository.delete(item);
+		}
+	}
+
+	@Override
+	public NewsDto get(long id) {
+		NewsEntity newsEntity = newsRepository.findOne(id);
+		return newsConverter.toDto(newsEntity);
+	}
+}

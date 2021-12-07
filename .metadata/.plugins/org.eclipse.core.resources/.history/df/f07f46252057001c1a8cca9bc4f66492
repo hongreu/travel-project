@@ -1,0 +1,40 @@
+package hongreu.demo.service.impl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import hongreu.demo.converter.PlacesConverter;
+import hongreu.demo.dto.PlaceListRequestDto;
+import hongreu.demo.dto.PlaceListResponseDto;
+import hongreu.demo.dto.PlacesData;
+import hongreu.demo.entity.PlacesEntity;
+import hongreu.demo.entity.UserListEntity;
+import hongreu.demo.repository.IPlacesRepository;
+import hongreu.demo.repository.IUserListRepository;
+import hongreu.demo.service.IPlaceListService;
+
+@Service
+public class PlaceListService implements IPlaceListService {
+	@Autowired
+	private IPlacesRepository placesRepository;
+	@Autowired
+	private IUserListRepository userListRepository;
+	@Autowired
+	private PlacesConverter placesConverter;
+
+	@Override
+	public PlaceListResponseDto findAllPlaces(PlaceListRequestDto placeListRequestDto) {
+		PlaceListResponseDto placeListResponeDto = new PlaceListResponseDto();
+		UserListEntity userListEntity = userListRepository.findOneByToken(placeListRequestDto.getToken());
+		if (userListEntity != null) {
+			List<PlacesEntity> placesEntity = placesRepository.findAll();
+			placeListResponeDto.setResponseCode("00");
+			placeListResponeDto.setDescription("Have items");
+			List<PlacesData> placesData = placesConverter.toDto(placesEntity);
+			placeListResponeDto.setPlacesData(placesData);
+		}
+		return null;
+	}
+}

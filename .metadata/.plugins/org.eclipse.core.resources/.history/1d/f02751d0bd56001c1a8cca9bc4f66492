@@ -1,0 +1,29 @@
+package hongreu.demo.api;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import hongreu.demo.dto.NewsDto;
+import hongreu.demo.service.ILoginService;
+
+//@Controller
+@CrossOrigin
+@RestController // = @Controller + @ResponseBody
+public class PlaceListApi{
+	@Autowired
+	private ILoginService newsService;
+	
+	//@RequestMapping(value = "/news", method = RequestMethod.POST)
+	//@ResponseBody
+	@PostMapping(value = "/place-inqury") // = @RequestMapping + method
+	public NewsDto createNews(@RequestBody NewsDto model) {
+		return newsService.save(model);
+	}
+}

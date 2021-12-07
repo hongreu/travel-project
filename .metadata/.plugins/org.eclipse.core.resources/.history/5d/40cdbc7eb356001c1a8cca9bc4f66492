@@ -1,0 +1,9 @@
+package hongreu.demo.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import hongreu.demo.entity.UserListEntity;
+
+public interface IUserListRepository extends JpaRepository<UserListEntity, Long> {
+	UserListEntity findOneByUsername(String username);
+}

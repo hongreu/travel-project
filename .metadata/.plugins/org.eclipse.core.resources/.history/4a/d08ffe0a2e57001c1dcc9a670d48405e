@@ -1,0 +1,27 @@
+version: '3'
+services:
+  travel_list-mysql:
+    container_name: travel_list-mysql
+    image: mysql
+    environment:
+      MYSQL_DATABASE: travel_list
+      MYSQL_USER: root
+      MYSQL_PASSWORD: 1234
+      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_ROOT_HOST: '%'
+    ports:
+      - "3306:3306"
+    restart: always
+  travel_list:
+    depends_on: 
+      - travel_list-mysql
+    restart: always
+    will build ./docker/travel_list/Dockerfile
+    build: ./docker/travel_list
+    working_dir: /travel_list
+    volumes:
+      - ./:/travel_list
+      - ~/.m2:/root/.m2
+    expose:
+      - "1904"
+    command: "mvn clean spring-boot:run"

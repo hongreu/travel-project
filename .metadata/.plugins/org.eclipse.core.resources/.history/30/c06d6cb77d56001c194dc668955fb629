@@ -1,0 +1,9 @@
+package hongreu.demo.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import hongreu.demo.entity.NewsEntity;
+
+public interface IUserListRepository extends JpaRepository<NewsEntity, Long> {
+
+}

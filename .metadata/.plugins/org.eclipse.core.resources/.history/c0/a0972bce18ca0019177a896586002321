@@ -1,0 +1,7 @@
+package hongreu.demo.service.impl;
+
+import hongreu.demo.service.INewsService;
+
+public class NewsService implements INewsService {
+
+}

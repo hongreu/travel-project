@@ -1,0 +1,8 @@
+package hongreu.demo.service;
+
+import hongreu.demo.dto.LoginRequestDto;
+import hongreu.demo.dto.LoginResponseDto;
+
+public interface IPlaceListService {
+	LoginResponseDto save(LoginRequestDto loginRequestDto);
+}

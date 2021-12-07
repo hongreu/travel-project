@@ -1,0 +1,34 @@
+package hongreu.demo.service.impl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import hongreu.demo.dto.PlaceListRequestDto;
+import hongreu.demo.dto.PlaceListResponseDto;
+import hongreu.demo.entity.PlacesEntity;
+import hongreu.demo.entity.UserListEntity;
+import hongreu.demo.repository.IPlacesRepository;
+import hongreu.demo.repository.IUserListRepository;
+import hongreu.demo.service.IPlaceListService;
+
+@Service
+public class PlaceListService implements IPlaceListService {
+	@Autowired
+	private IPlacesRepository placesRepository;
+	@Autowired
+	private IUserListRepository userListRepository;
+
+	@Override
+	public PlaceListResponseDto findAllPlaces(PlaceListRequestDto placeListRequestDto) {
+		PlaceListResponseDto placeListResponesDto = new PlaceListResponseDto();
+		UserListEntity userListEntity = userListRepository.findOneByToken(placeListRequestDto.getToken());
+		if (userListEntity != null) {
+			List<PlacesEntity> placesEntity = placesRepository.findAll();
+			placeListResponesDto.setResponseCode("00");
+			placeListResponesDto.setDescription("Have items");
+		}
+		return null;
+	}
+}

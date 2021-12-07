@@ -1,0 +1,21 @@
+package hongreu.demo.service.impl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import hongreu.demo.dto.LoginRequestDto;
+import hongreu.demo.dto.LoginResponseDto;
+import hongreu.demo.repository.IPlacesRepository;
+import hongreu.demo.repository.IUserListRepository;
+import hongreu.demo.service.ILoginService;
+
+@Service
+public class PlaceListService implements ILoginService {
+	@Autowired
+	private IPlacesRepository placesRepository;
+
+	@Override
+	public LoginResponseDto save(LoginRequestDto loginRequestDto) {
+		return null;
+	}
+}
