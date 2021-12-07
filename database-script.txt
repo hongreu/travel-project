@@ -1,0 +1,29 @@
+create schema travel_list;
+
+#use travel_list;
+#create table places (
+#    id int not null auto_increment,
+#    name varchar(255),
+#    visited tinyint(1),
+#    primary key (id)
+#);
+#
+#create table userlist (
+#    id int not null auto_increment,
+#    username varchar(60),
+#    password varchar(255),
+#    token varchar(250),
+#    primary key (id)
+#);
+
+insert into places (name, visited)
+select 'Tokyo', 0
+union
+select 'Sai Gon', 1
+union
+select 'Ha Noi', 0
+
+insert into userlist (username, password, token)
+select 'Nguyen Van A', md5('Abc@123'), md5(rand())
+union
+select 'Tran Thi B', md5('Efg@456'), md5(rand());
