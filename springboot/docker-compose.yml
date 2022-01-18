@@ -1,0 +1,50 @@
+version: "3"
+services:
+   db:
+      image: mysql:8.0.27
+      ports:
+         - 3307:3306
+      volumes:
+         - mysqldata:/var/lib/mysql
+      restart: always
+      environment:
+         MYSQL_ROOT_PASSWORD: 1234
+         MYSQL_DATABASE: travel_list
+   db2:
+      image: hongreu999/db2
+      build:
+         context: .
+         dockerfile: Dockerfile2
+         args:
+            buildno: 1
+      ports:
+         - 3308:3306
+      volumes:
+         - mysqldata2:/var/lib/mysql
+      restart: always
+      environment:
+         MYSQL_ROOT_PASSWORD: 5678
+         MYSQL_DATABASE: travel_list
+   backend:
+      image: hongreu999/backend
+      build:
+         context: .
+         dockerfile: Dockerfile
+         args:
+            buildno: 1
+      ports:
+         - 1904:1904
+      depends_on:
+         - db2
+      restart: always
+      environment:
+         DB_PORT: 3306
+         DB_HOST: db2
+         DB_NAME: travel_list
+         DB_USERNAME: root
+         DB_PASSWORD: 5678
+         DB_SCHEMA: public
+         DDL_METHOD: update
+volumes:
+   mysqldata:
+   mysqldata2:
